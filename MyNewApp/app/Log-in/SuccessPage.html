@@ -1,0 +1,88 @@
+<style>
+h4 {
+    color: white;
+    text-align: ;
+}
+
+small {
+    color: white;
+}
+
+.gridStyle {
+    border: 1px solid rgb(212, 212, 212);
+    width: 400px;
+    height: 300px;
+}
+</style>
+<form class="form" name="form-degree">
+    <div class="container" ng-controller="Logincontroller as vm">
+
+        <div class="row">
+
+            <label style="dispaly:inline" for="Course"></label>
+
+            <div class="row col-md-7">
+
+
+                <h2><strong>Add New Degree</strong></h2>
+
+
+                <div ng-class="{ 'has-error': form-degree.degreename.$dirty && form-degree.degreename.$error.required }" class="form-group">
+                    <br>
+                    <!--  <select ng-model="deg" ng-options="v.id as v.value for (k, v) in degrees | filter:  {b_id:br}" required> -->
+                    <select ng-model="vm.deg" name="degreename" ng-options="v as v.value for (k, v) in vm.degrees" ng-change ="vm.updateBranch(vm.deg)"  required>
+                    </select>
+                    </br>
+                    The value selected is {{vm.deg}}
+                </div>
+
+                <!--  <div  ng-class="form-group" ng-repeat="i in degrees | filter:  {b_id:deg}">
+                    {{i.value}}
+                </div> -->
+                <div ng-class="{ 'has-error':form-degree.branchname.$dirty && form-degree.branchname.$error.required }" class="form-group">
+                    <h3><strong>Add New Branches</strong></h3>
+
+                    <!--  <select ng-model="br" ng-options="v.b_id as v.value for (k, v) in branches" required> -->
+                     <select ng-model="vm.br" ng-options="v as v for v in vm.arr1" style="width: 50px;" multiple required>
+                
+                    </select>
+
+                </div> The value selected is {{vm.br}}
+
+                <!--  <div ng-repeat="i in branches | filter: {b_id:deg}">
+                    {{i.value}}
+                </div> -->
+                
+
+                <div class="form-actions">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" ng-click="vm.add()" novalidate>Add</button>
+
+                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" ui-sref="SuccessPage.candidate" novalidate>Move to Candidate Page</button>
+                    </div>
+
+
+                    <!--  <div ng-show="deg">
+                    {{deg.value}}
+                </div> -->
+                    <div ng-class="form-group">
+                        <table>
+                            <tr>
+                                <td>Added values are: </td>
+                            </tr>
+                            <tr ng-repeat="j in vm.arr ">
+                                <td>{{j}}</td>
+                            </tr>
+                           
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+</form>
+<!--  <div ng-show=false> -->
+  <div data-ui-view >
+  </div><!-- 
+</div> -->
