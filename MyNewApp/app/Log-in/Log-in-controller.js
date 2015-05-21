@@ -2,12 +2,13 @@
 'use strict';
 angular
     .module('login')
-    .controller('Logincontroller', ['$state','$scope', function($state,$scope) {
+    .controller('Logincontroller', ['$state','$scope','list', function($state,$scope,list) {
         var vm = this;
          vm.arr1 = [];
-         vm.xyz;
         vm.arr = [];
-
+       
+        $scope.students=[];
+        console.log($state);
         vm.degrees = [{
             'id': 1,
             'value': 'B-tech'
@@ -59,19 +60,34 @@ angular
             }
 
         };
+        init();
         vm.deg1 = vm.deg;
+        vm.deg2=vm.deg;
         vm.br1 = vm.br;
 
         vm.add = function() {
-            vm.arr = [];
+            vm.arr3 = [];
+            vm.newcourse = [];
+            vm.newcourse.push({
+                'cname':vm.cname,
+                'br':vm.br
+            });
+           list.setallcourse(vm.newcourse);
             vm.arr.push(vm.deg.value);
 
             vm.arr.push(vm.br);
-
-            console.log(vm.arr);
+            vm.arr3.push(vm.deg.value);
+            //console.log(vm.arr);
+          vm.cname="";
+            //console.log(vm.arr3);
+ 
         };
-
-
+        function init() {
+            if (list.getallcourse()) {
+                vm.newcourse = list.getallcourse();
+                
+            }
+        }
         vm.arr2 = [];
         vm.add1 = function() {
             alert("1");
@@ -86,13 +102,13 @@ angular
             vm.dob = "";
             vm.email = "";
             vm.ph = "";
-            console.log(vm.arr2);
+            //console.log(vm.arr2);
         };
 
-vm.getBranchNameFromId = function(branchid) {
-    
-    for (var i=0; i<vm.branches.length; i++) {
+         
 
+vm.getBranchNameFromId = function(branchid) {
+    for (var i=0; i<vm.branches.length; i++) {
         if (vm.branches[i].id == branchid) {
             return vm.branches[i].value;
         }
@@ -100,7 +116,7 @@ vm.getBranchNameFromId = function(branchid) {
 };
 
 vm.updateBranch = function(xyz) {
-   console.log(xyz);
+   //console.log(xyz);
     angular.forEach(vm.mappingObject, function(value, index) {
 
         if (xyz.id == vm.mappingObject[index].id) {
@@ -111,10 +127,13 @@ vm.updateBranch = function(xyz) {
         }
 
     });
-    console.log(vm.arr1);
+    //console.log(vm.arr1);
 };
-vm.move = function() {
-    $state.go('candidate');
+
+vm.moveToCandidatePage = function() {
+    $state.go('SuccessPage.candidate', {
+        id:{deg:'1'}
+    });
 };
 
 }]);

@@ -13,8 +13,8 @@
 
             'ui.router',
             'home',
-            'login'
-            
+            'login',
+            'candi'
 
         ])
 

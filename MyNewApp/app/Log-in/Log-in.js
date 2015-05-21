@@ -5,7 +5,18 @@
         .module('login', [
             'ui.router'
         ])
-    .config(config); 
+    .config(config) 
+      .factory('list',function (){
+      var courselist =[];
+      return{
+      getallcourse : function (){
+        return courselist;
+      },
+      setallcourse : function (list) {
+        courselist=list;
+      }
+    }
+    });
     function config($stateProvider,$urlRouterProvider) {
         $urlRouterProvider.otherwise('Log-in/login');
         $stateProvider
@@ -20,15 +31,16 @@
                 templateUrl: 'Log-in/SuccessPage.html'
             })
             .state('SuccessPage.candidate', {
-                url: '/candidate',
-               /* views:{
-                '@':{*/
-
-                     templateUrl: 'Log-in/Candidate.html'
-                  /*   controller:'Logincontroller'
+                url: '/candidate/',
+                templateUrl: 'Log-in/Candidate.html',
+                params:{
+                  id:{
+                      array:false
+                  },
+                  der:{
+                    array:false
+                  }
                 }
-            }*/
-               
             });
            
 

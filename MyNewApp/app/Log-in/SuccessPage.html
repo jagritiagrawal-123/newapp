@@ -18,10 +18,9 @@ small {
     <div class="container" ng-controller="Logincontroller as vm">
 
         <div class="row">
+       
 
             <label style="dispaly:inline" for="Course"></label>
-
-            <div class="row col-md-7">
 
 
                 <h2><strong>Add New Degree</strong></h2>
@@ -29,11 +28,17 @@ small {
 
                 <div ng-class="{ 'has-error': form-degree.degreename.$dirty && form-degree.degreename.$error.required }" class="form-group">
                     <br>
+                    <table>
+                    <tr>
+            <td>Enter the  course Name</td>
+            <td><input type="text" ng-model="vm.cname" placeholder="Enter course name" ng-change ="vm.updateBranch(vm.cname)" required></td>
+        </tr>
+        </table>
                     <!--  <select ng-model="deg" ng-options="v.id as v.value for (k, v) in degrees | filter:  {b_id:br}" required> -->
-                    <select ng-model="vm.deg" name="degreename" ng-options="v as v.value for (k, v) in vm.degrees" ng-change ="vm.updateBranch(vm.deg)"  required>
+                    <select ng-model="vm.deg" name="degreename" ng-options="v as v.value for (k,v) in vm.degrees" ng-change ="vm.updateBranch(vm.deg)"  required>
                     </select>
                     </br>
-                    The value selected is {{vm.deg}}
+                    The value selected is {{vm.deg}} 
                 </div>
 
                 <!--  <div  ng-class="form-group" ng-repeat="i in degrees | filter:  {b_id:deg}">
@@ -58,7 +63,7 @@ small {
                     <div class="col-sm-offset-2 col-sm-10">
                         <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" ng-click="vm.add()" novalidate>Add</button>
 
-                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" ui-sref="SuccessPage.candidate" novalidate>Move to Candidate Page</button>
+                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" ng-click="vm.moveToCandidatePage();" >Move to Candidate Page</button>
                     </div>
 
 
@@ -73,9 +78,12 @@ small {
                             <tr ng-repeat="j in vm.arr ">
                                 <td>{{j}}</td>
                             </tr>
-                           
+                            <tr ng-repeat="n in vm.newcourse">
+                            <td>{{n}}</td>
+                           </tr>
                         </table>
                     </div>
+
 
 
                 </div>

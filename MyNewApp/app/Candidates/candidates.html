@@ -1,0 +1,66 @@
+<div ng-controller="CandidateController as vm">
+<div class="col-md-2"></div>
+    <div class="col-md-6">
+    <h4>{{newcourse.cname}}</h4>
+<form>
+            <table class="table  table-hover" style="width:700px">
+               
+                <tr>
+                    <th style="text-align:center" colspan="2">
+                        <h2>Enter the Student details</h2></th>
+                </tr>
+                
+                <tr>
+                    <td>Enter First name</td>
+                    <td>
+                        <input type="text" ng-model="vm.fname" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Enter last name</td>
+                    <td>
+                        <input type="text" ng-model="vm.lname" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Enter DOB</td>
+                    <td>
+                        <input type="text" ng-model="vm.dob" class="form-control" placeholder="DD/MM/YYYY">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Select Degree</td>
+                    <td>
+                        <select class="form-control" id="" ng-model="vm.cname" ng-options="person.cname for person in vm.newcourse">
+                            <option value="">[Select course]</option>
+                        </select>
+                    </td>
+                </tr> 
+                <tr>
+                    <td>Select Branch</td>
+                    <td>
+                        <select class="form-control" ng-model="vm.branch" ng-options="l as l for l in vm.cname.br" multiple>
+                            <option value="">[Select branch]</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                	<td>Registration No.</td><td><input type="text" id="vm.rno" value="{{students.regNo}}"  ng-model="vm.regNo"
+                	></td>
+                </tr>
+                <tr>
+                    <td>Date of Join</td><td><input type="text" class="form-control" ng-model="vm.doj"></td>
+                </tr>
+                
+               	<tr >
+                	<td style="text-align:center"><button class="btn btn-info" ng-click="vm.addStud()">Submit</button></td>	
+                	<td style="text-align:center"><button class="btn btn-danger">Cancel</button></td>
+                	<td > <button class="btn btn-info" ui-sref="view">View</button></td>
+                </tr>
+            </table>
+        </form>
+        <p>{{rno}}</p>
+    </div>
+    <div class="col-md-3">
+    </div>
+</div>
